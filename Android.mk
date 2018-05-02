@@ -112,17 +112,7 @@ WCNSS_LINKS := $(WCNSS_INI_SYMLINK) $(WCNSS_BIN_SYMLINK) $(WCNSS_DAT_SYMLINK)
 $(foreach m,INI BIN DAT,$(eval WCNSS_MAP_$(WCNSS_$(m)_SYMLINK) := $(ACTUAL_$(m)_FILE)))
 $(WCNSS_LINKS):
 	$(hide) echo "Create Symlink: $@"
-	$(hide) ln -sf $(WCNSS_MAP_$(@)) $@
-PRONTO_WLAN_SYMLINKS:$(WCNSS_LINKS)
-	$(hide) mkdir -p $(TARGET_OUT)/lib/modules
-	$(hide) ln -sf /system/lib/modules/pronto/pronto_wlan.ko $(TARGET_OUT)/lib/modules/wlan.ko
-KERNEL_OUT := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ
-KERNEL_HEADERS_INSTALL := $(KERNEL_OUT)/usr
-$(KERNEL_HEADERS_INSTALL): $(KERNEL_OUT)
-	@mkdir -p $@
-	@cp -r $(DEVICE_PATH)/kernel_headers $@/include
-$(KERNEL_OUT):
-	@mkdir -p $(KERNEL_OUT)
+	$(hide) ln -sf $(WCNSS_MAP_$(@)) $@ $(WCNSS_LINKS)
 
 ALL_DEFAULT_INSTALLED_MODULES += \
     $(RFS_MSM_ADSP_SYMLINKS) \
@@ -130,8 +120,7 @@ ALL_DEFAULT_INSTALLED_MODULES += \
     $(RFS_MDM_ADSP_SYMLINKS) \
     $(RFS_MDM_MPSS_SYMLINKS) \
     $(RFS_MDM_SPARROW_SYMLINKS) \
-    $(RFS_APQ_GNSS_SYMLINKS) \
-		PRONTO_WLAN_SYMLINKS
+    $(RFS_APQ_GNSS_SYMLINKS)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 endif
