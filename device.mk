@@ -260,8 +260,4 @@ PRODUCT_COPY_FILES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    fingerprintd \
-    fingerprint.msm8953
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.hardware.fp.goodix=true \
-    ro.hardware.fp.fpc=true
+    fingerprintd
