@@ -200,16 +200,6 @@ on boot
     chown system system /dev/goodix_fp
     chmod 0644 /dev/goodix_fp
 
-
-    #bug 274787 - 【JIRA】【HONGMI-31927】 [D1-P2][fingerprint] set finger pay prop huangfusheng.wt 20170816 start
-    on property:persist.sys.fp.vendor=fpc
-     	setprop ro.boot.fpsensor fpc
-
-    on property:persist.sys.fp.vendor=goodix
-	setprop ro.boot.fpsensor goodix
-	#setprop goodix.fp.miui.analyse 1
-    #bug 274787 - 【JIRA】【HONGMI-31927】 [D1-P2][fingerprint] set finger pay prop huangfusheng.wt 20170816 end
-
     # Allow access to emmc rawdump block partition and dload sysfs node
     chown root system /dev/block/bootdevice/by-name/rawdump -p /dev/block/
     chmod 0660 /dev/block/bootdevice/by-name/rawdump -p /dev/block/
@@ -1152,6 +1142,7 @@ service poweroffhandler /system/bin/poweroffhandler
     group graphics audio
     disabled
     oneshot
+
 service fingerprintd /system/bin/fingerprintd
     class late_start
     socket fpce stream 0666 system system
@@ -1160,21 +1151,17 @@ service fingerprintd /system/bin/fingerprintd
     system system
 #   disabled
 
+    on property:persist.sys.fp.vendor=fpc
+     	setprop ro.boot.fpsensor fpc
 
-#service gx_fpd /system/bin/gx_fpd
-#     class core
-#     user root
-#     group system system
-#     disabled
+    on property:persist.sys.fp.vendor=goodix
+	setprop ro.boot.fpsensor goodix
 
 service fingerprint_log /system/bin/fingerprint_log
     class late_start
     user system
     group system sdcard_rw
     disabled
-
-
-
 
 on property:persist.sys.wingtech.debug=1
    start fingerprint_log

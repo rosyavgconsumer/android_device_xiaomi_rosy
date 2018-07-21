@@ -1221,6 +1221,7 @@ lib64/hw/lights.msm8953.so:lib64/hw/lights.real.so
 lib/hw/lights.msm8953.so:lib/hw/lights.real.so
 
 # fingerprint
+bin/fingerprintd
 lib64/hw/fingerprint.default.so
 lib64/hw/gf_fingerprint.default.so
 lib64/libgoodixfingerprintd_binder.so
