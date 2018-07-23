@@ -286,7 +286,6 @@ ro.malloc.impl=jemalloc
 fw.max_users=5
 persist.power.useautobrightadj=true
 persist.radio.apm_sim_not_pwdn=1
-qemu.hw.mainkeys=1
 ro.sf.lcd_density=320
 sys.haptic.down.weak=0,12,24,32
 sys.haptic.down.normal=0,24,20,46
