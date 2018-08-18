@@ -121,6 +121,11 @@ PRODUCT_PACKAGES += \
     ethertypes \
     libebtc
 
+#FM
+PRODUCT_PACKAGES += \
+    FMRadio \
+    libfmjni
+
 # Gello
 PRODUCT_PACKAGES += \
     Gello
