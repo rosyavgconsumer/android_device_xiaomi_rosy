@@ -35,6 +35,13 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.0-service.xiaomi_rosy
 
+# Camera Shims
+PRODUCT_PACKAGES += \
+    libshim_aragon
+
+TARGET_LD_SHIM_LIBS += \
+    /vendor/lib/libmmcamera_ppeiscore.so|libshim_aragon.so
+
 # Consumerir
 PRODUCT_PACKAGES += \
     android.hardware.ir@1.0-service.xiaomi_rosy
